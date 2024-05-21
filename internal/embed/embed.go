@@ -5,11 +5,16 @@ import (
 	"io/fs"
 )
 
-//go:embed all:dist
-var assets embed.FS
+const (
+	// SwaggerUIAssetsPath is the path for the generated assets.
+	SwaggerUIAssetsPath = "swagger-ui"
+)
+
+//go:embed all:swagger-ui
+var bundles embed.FS
 
 // GetAssets returns the embedded assets from the dist directory.
 func GetAssets() fs.FS {
-	files, _ := fs.Sub(assets, "dist")
+	files, _ := fs.Sub(bundles, SwaggerUIAssetsPath)
 	return files
 }
